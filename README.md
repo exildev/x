@@ -1,0 +1,2 @@
+# x
+Django command shortuts
