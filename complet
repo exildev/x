@@ -1,0 +1,18 @@
+#!/bin/bash
+PROHOME=$HOME/gits
+
+function _mycomplete_()
+{
+    local cmd="${1##*/}"
+    local word=${COMP_WORDS[COMP_CWORD]}
+    local line=${COMP_LINE}
+    local xpat='!*'
+    local proh=$(cd $PROHOME;ls)
+
+    COMPREPLY=($(compgen -f -W "$proh" "${word}"))
+    
+}
+
+complete -F _mycomplete_ x
+
+echo "Completes loaded"

@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 mfile=manage.py
-#PROHOME=~/Documentos/Poyectos
-PROHOME=$HOME/gits
-
+pro=~/Documentos/Poyectos
+echo "Algo"
 vrenv(){
     if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
         source /usr/local/bin/virtualenvwrapper.sh
@@ -61,15 +60,15 @@ tput setaf 7;
 
 control(){
     if [ ! -f manage.py ]; then
-        if [ -d $PROHOME/$1 ]; then
-            cd $PROHOME/$1;
+        if [ -d $pro/$1 ]; then
+            cd $pro/$1;
             retval=1
         else
             if [ "$1" = "-s" ]; then
                 vrenv
-                cd $PROHOME
+                cd $pro
                 s $2
-                cd $PROHOME/$2;
+                cd $pro/$2;
                 retval=2
             else
                 tput setaf 1;
@@ -77,8 +76,6 @@ control(){
                 tput setaf 7;
             fi
         fi
-    else
-        echo "No se encontro el archivo manage.py"
     fi
 }
 
@@ -91,6 +88,7 @@ done
 if [ -f manage.py ]; then
     vrenv
     while [ "$1" != "" ]; do
+        echo $1
         case  $1 in
             -m | --migrate)
                 m
